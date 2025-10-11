@@ -1,49 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact — YOUR_NAME</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Mehul Kalsi</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="site-nav">
-      <a href="../">Home</a>
-      <a href="../projects/">Projects</a>
-      <a href="../resume/">Resume</a>
-      <a href="./" aria-current="page">Contact</a>
-      <a href="https://github.com/mkalsi13" target="_blank" rel="noopener">GitHub ↗</a>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../projects/">Projects</a></li>
+        <li><a href="../resume/">Resume</a></li>
+        <li><a href="./" class="current">Contact</a></li>
+        <li><a href="https://github.com/mkalsi13" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
     </nav>
   </header>
-
-  <main class="container">
+  <main>
     <h1>Contact</h1>
     <form action="mailto:mkalsi@ucsd.edu" method="POST" enctype="text/plain">
       <label>
         Your email
-        <input
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          value="you@example.com" />
+        <input type="email" name="email" value="you@example.com" placeholder="you@example.com">
       </label>
-
       <label>
         Subject
-        <input
-          name="subject"
-          placeholder="Hello from your website"
-          value="Hello from your website" />
+        <input name="subject" value="Hello from your website">
       </label>
-
       <label>
         Message
         <textarea name="body">Hi Mehul,
 
 I found your site and wanted to reach out about...</textarea>
       </label>
-
       <button>Send</button>
     </form>
   </main>
