@@ -7,24 +7,9 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="site-header">
-    <nav class="site-nav">
-      <ul>
-        <li><a href="../">Home</a></li>
-        <li><a href="../projects/">Projects</a></li>
-        <li><a href="../resume/">Resume</a></li>
-        <li><a href="./" class="current">Contact</a></li>
-        <li><a href="https://github.com/mkalsi13" target="_blank" rel="noopener">GitHub ↗</a></li>
-      </ul>
-    </nav>
-  </header>
   <main>
     <h1>Contact</h1>
-    <form action="mailto:mkalsi@ucsd.edu" method="POST" enctype="text/plain">
-      <label>
-        Your email
-        <input type="email" name="email" value="you@example.com" placeholder="you@example.com">
-      </label>
+    <form action="mailto:mkalsi@ucsd.edu">
       <label>
         Subject
         <input name="subject" value="Hello from your website">
@@ -38,5 +23,7 @@ I found your site and wanted to reach out about...</textarea>
       <button>Send</button>
     </form>
   </main>
+
+  <script type="module" src="../global.js"></script>
 </body>
 </html>
