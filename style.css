@@ -68,3 +68,27 @@ form>button{
 /* theme switcher */
 .color-scheme{position:absolute;top:1rem;right:1rem;font-size:80%}
 .color-scheme select{font:inherit}
+/* GitHub stats grid */
+.gh-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+}
+
+.gh-grid dt {
+  grid-row: 1;
+  font-weight: 600;
+}
+
+.gh-grid dd {
+  grid-row: 2;
+  margin: 0;
+}
+
+.profile-stats {
+  margin-block: 1rem;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in oklch, canvastext 15%, canvas 85%);
+  border-radius: 0.5rem;
+}

@@ -1,28 +1,29 @@
-
 console.log("IT’S ALIVE!");
 
+// Helper: $$ (kept from Lab 3)
 export function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-
-
-// Detect base path (localhost vs GitHub Pages project vs user site root)
+/* -----------------------------
+   Base path detection (Lab 3)
+------------------------------*/
 const isLocal = ["localhost", "127.0.0.1"].includes(location.hostname);
 const firstPathSeg = location.pathname.split("/").filter(Boolean)[0] || "";
 const onGitHubPages = location.hostname.endsWith(".github.io");
 const BASE_PATH = isLocal ? "/" : (onGitHubPages && firstPathSeg ? `/${firstPathSeg}/` : "/");
 
-// Site pages (edit titles/URLs if you add more)
+/* -----------------------------
+   Header + Nav (Lab 3)
+------------------------------*/
 const pages = [
-  { url: "", title: "Home" },
+  { url: "",          title: "Home" },
   { url: "projects/", title: "Projects" },
   { url: "resume/",   title: "Resume" },
   { url: "contact/",  title: "Contact" },
   { url: "https://github.com/mkalsi13", title: "GitHub ↗" },
 ];
 
-// Build header + nav
 const header = document.createElement("header");
 header.className = "site-header";
 const nav = document.createElement("nav");
@@ -56,9 +57,10 @@ for (const p of pages) {
   ul.append(li);
 }
 
-
-
-// Insert the switcher UI at top-right
+/* -----------------------------
+   Theme selector (Lab 3)
+------------------------------*/
+// Insert the switcher UI at top (kept as-is)
 document.body.insertAdjacentHTML(
   "afterbegin",
   `
@@ -76,19 +78,20 @@ document.body.insertAdjacentHTML(
 const select = document.getElementById("theme-select");
 const root = document.documentElement;
 
-
 const saved = localStorage.colorScheme;
 const initial = saved ?? "light dark";
 select.value = initial;
 root.style.setProperty("color-scheme", initial);
 
 select.addEventListener("input", (e) => {
-  const scheme = e.target.value; 
+  const scheme = e.target.value;
   root.style.setProperty("color-scheme", scheme);
   localStorage.colorScheme = scheme;
 });
 
-
+/* -----------------------------
+   Mailto form (Lab 3)
+------------------------------*/
 const form = document.querySelector('form[action^="mailto:"]');
 form?.addEventListener("submit", (ev) => {
   ev.preventDefault();
@@ -103,3 +106,72 @@ form?.addEventListener("submit", (ev) => {
   const url = params.length ? `${base}?${params.join("&")}` : base;
   location.href = url;
 });
+
+/* ============================================================
+   Lab 4 ADDITIONS: fetchJSON, renderProjects, fetchGitHubData
+   (These are *in addition* to your Lab 3 code above.)
+============================================================ */
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (err) {
+    console.error("Error fetching or parsing JSON data:", err);
+    return null;
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = "h2") {
+  if (!containerElement) {
+    console.warn("renderProjects: containerElement not found");
+    return;
+  }
+
+  // validate heading
+  const validHeading = /^(h[1-6])$/.test(String(headingLevel)) ? headingLevel : "h2";
+
+  containerElement.innerHTML = ""; // clear previous
+  const list = Array.isArray(projects) ? projects : [];
+
+  if (list.length === 0) {
+    const p = document.createElement("p");
+    p.textContent = "No projects to display.";
+    containerElement.appendChild(p);
+    return;
+  }
+
+  for (const project of list) {
+    const article = document.createElement("article");
+    const title = project?.title ?? "Untitled project";
+    const img = project?.image ?? "https://dsc106.com/labs/lab02/images/empty.svg";
+    const desc = project?.description ?? "";
+    const year = project?.year ? `<small>• ${project.year}</small>` : "";
+
+    article.innerHTML = `
+      <${validHeading}>${title} ${year}</${validHeading}>
+      <img src="${img}" alt="${title}">
+      <p>${desc}</p>
+    `;
+    containerElement.appendChild(article);
+  }
+
+  // Bonus: auto-count if an .projects-title exists
+  const titleEl = document.querySelector(".projects-title");
+  if (titleEl) {
+    titleEl.querySelector(".count")?.remove();
+    const count = document.createElement("span");
+    count.className = "count";
+    count.style.fontSize = "60%";
+    count.style.marginInlineStart = ".5rem";
+    count.textContent = `(${list.length})`;
+    titleEl.appendChild(count);
+  }
+}
+
+export async function fetchGitHubData(username) {
+  if (!username) throw new Error("fetchGitHubData: username is required");
+  return fetchJSON(`https://api.github.com/users/${encodeURIComponent(username)}`);
+}
