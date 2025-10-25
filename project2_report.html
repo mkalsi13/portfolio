@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Project 2 Report</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      /* Headings */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 180%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      /* Lists */
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      /* Sectioning elements */
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      /* Figures */
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Assignment 4</small>
+        Persuasive or Deceptive Visualization?
+      </h1>
+
+      <p><strong>Mehul Kalsi</strong> — <em>mkalsi@ucsd.edu</em></p>
+    </header>
+
+    <main>
+      <h2>Proposition: Climate-related disasters are accelerating worldwide.</h2>
+
+      <section>
+        <h3>FOR the Proposition</h3>
+
+        <figure>
+          <img src="Pic1.png" alt="" />
+          <figcaption>Decadal average of climate-related disasters highlighting a rising long-term trend.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>Temporal aggregation by decade to smooth noise and reveal trend (Earnestness: +1.5).
+<div>Aggregating yearly data into decade averages smooths random variation and clarifies long-term trends, making the visualization easier to interpret. This was an earnest way to support the claim without distorting the data.</div></li>
+          <li>Color Choice (Red Gradient for Increasing Disasters) (Deceptiveness: -0.5)
+<div> Red hues evoke urgency and danger, subtly reinforcing the idea that disaster frequency is alarming. This is mildly deceptive because the color scale primes emotional interpretation rather than neutral analysis.</div></li>
+          <li>Title Framing: “Climate Disasters Rising at an Alarming Rate” (Deceptiveness: -0.5)
+<div> The word alarming adds rhetorical force. It shapes interpretation before the data is processed, which makes it persuasive but not entirely objective.</div></li>          
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition</h3>
+
+        <figure>
+          <img src="Pic2.png" alt="" style="width:100%; max-width:1000px;" />
+          <figcaption>Decadal averages of climate-related disasters suggest a stabilizing trend in recent decades.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+<ul>
+<li>Decadal averaging to smooth variability and highlight stabilization (Earnestness: +1.5).
+<div> Averaging by decade reduces noise and makes decade-to-decade change easier to compare at a glance, supporting the idea of leveling off without altering underlying values.</div></li>
+<li>Selective percentage-change annotations emphasize declines between decades (Deceptiveness: -1).
+<div> Callouts like “-20%,” “-17%,” and “-34%” guide attention to decreases. I did not annotate the increase between 1980 and 1990 , which nudges readers toward a stabilizing/declining takeaway.</div></li>
+<li>Cool blue palette and subdued styling to convey stability (Earnestness: +1).
+<div> Blues feel calmer and reduce a sense of alarm, aligning with the argument while keeping bars and labels readable.</div></li>
+<li>Title and subtitle frame “stabilizing” and “leveling off” (Deceptiveness: -0.5).
+<div>Framing language primes readers toward a moderation narrative before they interpret the data. It is persuasive wording without altering the data.</div></li>
+</ul>
+      </section>
+
+      <section>
+        <h2>Final Reflection</h2>
+
+        <p>This project was very challenging, especially when creating visualizations that argued against the proposition. Climate change is an issue I care deeply about, so it was difficult initially to design a visual that tried to downplay the problem using the same data. It took time to understand how subtle manipulations such as adjusting color, scale, or excluding certain data points could completely shift the message. Once I began experimenting with these techniques, I realized how easy it is to persuade someone to believe in an opposite conclusion, even when the underlying data stays the same. That process made me more aware of how powerful design choices can be in shaping public perception.</p>
+
+<p>Through this experience, I have come to see ethical analysis and visualization as requiring both honesty and responsibility. It is not just about presenting data accurately, it is about being transparent with how the data is selected, transformed, and framed. Ethical visualization means using the data to inform, not to manipulate, and ensuring that viewers can trust what they see.</p>
+
+<p>When it comes to drawing the line between acceptable persuasive choices and misleading ones, I have learned that the boundary is often gray. What might seem like an acceptable persuasive design to one person could feel deceptive to another, depending on how it is interpreted. For me, the difference lies in intent and transparency. Persuasive choices are acceptable when they clarify a point without hiding or distorting evidence, while misleading ones occur when data is selectively omitted or altered to support a narrative. This project made me realize that the ethics of visualization depend not only on what you show, but also on what you choose not to show, and being conscious of that is what defines responsible visualization.</p>
+      </section>
+    </main>
+  </body>
+</html>
