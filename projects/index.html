@@ -3,34 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects — Mehul Kalsi</title>
+  <title>Projects</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <main>
-    <h1>Projects</h1>
-
-    <section class="projects">
-      <article>
-        <h2>Domestic vs. Foreign Players in the NBA — Statistical Analysis</h2>
-        <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
-        <p>Python-based data cleaning and analysis of PER, TS%, and defensive metrics.</p>
-        <ul>
-          <li><a href="https://github.com/mkalsi13/DataScienceEcosystem" target="_blank" rel="noopener">Repository ↗</a></li>
-        </ul>
-      </article>
-
-      <article>
-        <h2>The DataScience System — Personal Website &amp; Portfolio</h2>
-        <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
-        <p>Built from scratch with HTML and CSS, featuring a responsive layout, clean navigation, and a contact form.</p>
-        <ul>
-          <li><a href="https://github.com/mkalsi13/portfolio" target="_blank" rel="noopener">Repository ↗</a></li>
-        </ul>
-      </article>
+    <h1 class="projects-title">Projects</h1>
+    <section class="pie-wrap" aria-labelledby="pie-heading">
+      <h2 id="pie-heading" class="sr-only">Projects per year</h2>
+      <svg id="projects-pie-plot" viewBox="-50 -50 100 100" role="img" aria-labelledby="pie-title">
+        <title id="pie-title">Projects per year</title>
+      </svg>
+      <ul class="legend" aria-label="Legend: projects per year"></ul>
     </section>
+    <div class="projects-controls">
+      <input class="searchBar" type="search" aria-label="Search projects" placeholder="🔍 Search projects…">
+    </div>
+    <div class="projects"></div>
   </main>
-
   <script type="module" src="../global.js"></script>
+  <script type="module" src="./projects.js"></script>
 </body>
+</html>
+
 </html>

@@ -89,9 +89,46 @@ select.addEventListener("input", (e) => {
   localStorage.colorScheme = scheme;
 });
 
-/* -----------------------------
-   Mailto form (Lab 3)
-------------------------------*/
+export function renderProjects(projects, containerElement, headingLevel = "h2") {
+  if (!containerElement) return;
+  const validHeading = /^(h[1-6])$/.test(String(headingLevel)) ? headingLevel : "h2";
+  containerElement.innerHTML = "";
+  const list = Array.isArray(projects) ? projects : [];
+  if (list.length === 0) {
+    const p = document.createElement("p");
+    p.textContent = "No projects to display.";
+    containerElement.appendChild(p);
+    return;
+  }
+  for (const project of list) {
+    const article = document.createElement("article");
+    const title = project?.title ?? "Untitled project";
+    const img = project?.image ?? "https://dsc106.com/labs/lab02/images/empty.svg";
+    const desc = project?.description ?? "";
+    const year = project?.year ?? "";
+    const url = project?.url ?? "";
+    const titleHTML = url ? `<a href="${url}" target="_blank" rel="noopener">${title}</a>` : title;
+    article.innerHTML = `
+      <${validHeading}>${titleHTML}</${validHeading}>
+      <img src="${img}" alt="${title}">
+      <div class="project-body">
+        <p>${desc}</p>
+        ${year ? `<p class="project-year" aria-label="Year">${year}</p>` : ""}
+      </div>
+    `;
+    containerElement.appendChild(article);
+  }
+  const titleEl = document.querySelector(".projects-title");
+  if (titleEl) {
+    titleEl.querySelector(".count")?.remove();
+    const count = document.createElement("span");
+    count.className = "count";
+    count.style.fontSize = "60%";
+    count.style.marginInlineStart = ".5rem";
+    count.textContent = `(${list.length})`;
+    titleEl.appendChild(count);
+  }
+}
 const form = document.querySelector('form[action^="mailto:"]');
 form?.addEventListener("submit", (ev) => {
   ev.preventDefault();
@@ -124,52 +161,7 @@ export async function fetchJSON(url) {
   }
 }
 
-export function renderProjects(projects, containerElement, headingLevel = "h2") {
-  if (!containerElement) {
-    console.warn("renderProjects: containerElement not found");
-    return;
-  }
 
-  // validate heading
-  const validHeading = /^(h[1-6])$/.test(String(headingLevel)) ? headingLevel : "h2";
-
-  containerElement.innerHTML = ""; // clear previous
-  const list = Array.isArray(projects) ? projects : [];
-
-  if (list.length === 0) {
-    const p = document.createElement("p");
-    p.textContent = "No projects to display.";
-    containerElement.appendChild(p);
-    return;
-  }
-
-  for (const project of list) {
-    const article = document.createElement("article");
-    const title = project?.title ?? "Untitled project";
-    const img = project?.image ?? "https://dsc106.com/labs/lab02/images/empty.svg";
-    const desc = project?.description ?? "";
-    const year = project?.year ? `<small>• ${project.year}</small>` : "";
-
-    article.innerHTML = `
-      <${validHeading}>${title} ${year}</${validHeading}>
-      <img src="${img}" alt="${title}">
-      <p>${desc}</p>
-    `;
-    containerElement.appendChild(article);
-  }
-
-  // Bonus: auto-count if an .projects-title exists
-  const titleEl = document.querySelector(".projects-title");
-  if (titleEl) {
-    titleEl.querySelector(".count")?.remove();
-    const count = document.createElement("span");
-    count.className = "count";
-    count.style.fontSize = "60%";
-    count.style.marginInlineStart = ".5rem";
-    count.textContent = `(${list.length})`;
-    titleEl.appendChild(count);
-  }
-}
 
 export async function fetchGitHubData(username) {
   if (!username) throw new Error("fetchGitHubData: username is required");

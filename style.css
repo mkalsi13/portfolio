@@ -92,3 +92,99 @@ form>button{
   border: 1px solid color-mix(in oklch, canvastext 15%, canvas 85%);
   border-radius: 0.5rem;
 }
+
+/* Lab 5: Pie layout */
+.pie-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-block: 1rem 1.5rem;
+}
+
+/* SVG size + overflow handling */
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 0.5rem;
+  overflow: visible;
+}
+
+/* Legend styling */
+.legend {
+  list-style: none;
+  padding: .75rem;
+  margin: 0;
+  border: 1px solid color-mix(in oklch, canvastext 15%, canvas 85%);
+  border-radius: .5rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: .75rem 1rem;
+  flex: 1; /* take remaining width next to the pie */
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem .5rem;
+  border-radius: .375rem;
+  background: color-mix(in oklch, canvas 96%, var(--color) 4%);
+  transition: background 200ms, outline-color 200ms;
+  outline: 1px solid transparent;
+  cursor: pointer;
+}
+
+.legend li .swatch {
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  border-radius: .25em;
+  display: inline-block;
+  background: var(--color);
+}
+
+.legend li:hover {
+  outline-color: color-mix(in oklch, var(--color) 40%, canvas 60%);
+}
+
+/* Hover effect for pie using :has */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+#projects-pie-plot path {
+  cursor: pointer;
+  transition: 300ms;
+}
+
+/* Selected slice / legend item */
+.selected {
+  --color: oklch(60% 0.45 0) !important; /* highlight color */
+}
+#projects-pie-plot path.selected { fill: var(--color); }
+.legend li.selected {
+  outline-color: var(--color);
+  background: color-mix(in oklch, var(--color) 10%, canvas 90%);
+}
+
+/* Projects page controls */
+.projects-controls {
+  margin-block: 1rem;
+}
+.searchBar {
+  width: min(40rem, 100%);
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  border: 1px solid color-mix(in oklch, canvastext 15%, canvas 85%);
+  background: canvas;
+  color: canvastext;
+}
+
+/* Year under description */
+.project-body { display: grid; gap: .35rem; }
+.project-year {
+  color: oklch(45% 0 0);
+  font-family: Baskerville, Georgia, 'Times New Roman', serif;
+  font-variant-numeric: oldstyle-nums;
+  margin: 0;
+  line-height: 1.2;
+}

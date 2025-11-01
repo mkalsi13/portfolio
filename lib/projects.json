@@ -1,12 +1,30 @@
 [
     {
         "title": "Domestic vs. Foreign Players in the NBA — Statistical Analysis",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Python-based data cleaning and analysis of PER, TS%, and defensive metrics."
     },
     {
         "title": "The DataScience System — Personal Website & Portfolio",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Built from scratch with HTML and CSS, featuring a responsive layout, clean navigation, and a contact form."
+    },
+
+    {
+        "title": "Amazon Product Rating Predictor",
+        "year": "2024",
+        "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+        "description": "Built and evaluated models to predict Amazon product ratings from review text and metadata; includes feature engineering and validation workflows.",
+        "url": "https://github.com/Nolan-Lo/Amazon_Product_Rating_Predictor"
+    },
+    {
+        "title": "Persuasive or Deceptive Visualization?",
+        "year": "2025",
+        "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+        "description": "Two visuals using the same dataset—one supporting and one challenging the proposition that climate-related disasters are accelerating worldwide—to show how design can persuade in either direction.",
+        "url": "https://mkalsi13.github.io/portfolio/project2/project2_report.html"
     }
+
 ]
