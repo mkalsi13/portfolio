@@ -188,3 +188,22 @@ form>button{
   margin: 0;
   line-height: 1.2;
 }
+/* Meta: tooltip + info list */
+dl.info{display:grid;grid-template-columns:auto 1fr;gap:.25rem .75rem;margin:.5rem 0}
+dl.info dt{opacity:.7}
+.tooltip{position:fixed;top:1em;left:1em;padding:.6rem .8rem;border:1px solid color-mix(in oklch, canvastext 20%, canvas 80%);border-radius:.5rem;background:color-mix(in oklch, canvas 92%, canvastext 8%);box-shadow:0 4px 18px rgba(0,0,0,.12);backdrop-filter:saturate(1.1) blur(4px);z-index:1000;pointer-events:none}
+dl.info{transition:opacity .5s,visibility .5s}
+dl.info[hidden]:not(:hover,:focus-within){opacity:0;visibility:hidden}
+
+/* Scatterplot dots hover */
+#chart circle{transition:200ms;transform-origin:center;transform-box:fill-box}
+#chart circle:hover{transform:scale(1.5)}
+
+/* Gridlines */
+.gridlines line{stroke:color-mix(in oklch, canvastext 20%, canvas 80%);stroke-opacity:.35}
+.gridlines path{display:none}
+
+/* Brushing */
+.selection{fill-opacity:.1;stroke:black;stroke-opacity:.7;stroke-dasharray:5 3;animation:marching-ants 2s linear infinite}
+@keyframes marching-ants{to{stroke-dashoffset:-8}}
+#chart circle.selected{fill:#ff6b6b}

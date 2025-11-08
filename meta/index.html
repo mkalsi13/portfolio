@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meta · Codebase Analysis</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <h1>Meta</h1>
+    <p class="lead">Codebase statistics and quantitative visualizations from <code>meta/loc.csv</code>.</p>
+
+    <h2>Summary stats</h2>
+    <div id="stats"></div>
+
+    <h2>Commits by time of day</h2>
+    <p id="selection-count">No commits selected</p>
+    <div id="chart"></div>
+
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+      <dt>Commit</dt>
+      <dd><a href="" id="commit-link" target="_blank" rel="noopener"></a></dd>
+
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+
+      <dt>Time</dt>
+      <dd id="commit-time"></dd>
+
+      <dt>Author</dt>
+      <dd id="commit-author"></dd>
+
+      <dt>Lines</dt>
+      <dd id="commit-lines"></dd>
+    </dl>
+
+    <h3>Language breakdown (selection)</h3>
+    <dl id="language-breakdown" class="stats"></dl>
+  </main>
+
+  <script type="module" src="../global.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
